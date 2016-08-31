@@ -16,6 +16,7 @@ if ping -q -c 1 -W 10 -q -- "$INFLUXDB_HOST" >/dev/null; then
 		--volume=/var/run:/var/run:rw \
 		--volume=/sys:/sys:ro \
 		--volume=/var/lib/docker/:/var/lib/docker:ro \
+		--volume=/sys/fs/cgroup:/sys/fs/cgroup:ro \
 		--publish=8080:8080 \
 		--detach=true \
 		--name=cadvisor google/cadvisor:latest \
