@@ -12,6 +12,7 @@ fi
 if ping -q -c 1 -W 10 -q -- "$INFLUXDB_HOST" >/dev/null; then
 	docker rm -f cadvisor
 	docker run \
+		-h cadvisor.$(hostname) \
 		--volume=/:/rootfs:ro \
 		--volume=/var/run:/var/run:rw \
 		--volume=/sys:/sys:ro \
