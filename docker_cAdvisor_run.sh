@@ -24,8 +24,10 @@ if ping -q -c 1 -W 10 -q -- "$INFLUXDB_HOST" >/dev/null; then
 			-storage_driver_host=$INFLUXDB_HOST:$INFLUXDB_PORT \
 			-storage_driver_user=cadvisor \
 			-storage_driver_secure=False \
-			--vmodule=*=4 \
-			--housekeeping-interval=1m0s
+			-enable_load_reader=True \
+			-docker_only=True \
+			--housekeeping_interval=60s \
+			--vmodule=*=4
 else
 	echo "Cannot ping $INFLUXDB_HOST, cadvisor container is unlikely to work !"
 	exit 1
