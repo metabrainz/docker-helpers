@@ -1,5 +1,6 @@
 #!/bin/bash
 
+CADVISOR_WEB_PORT=18080
 INFLUXDB_PORT=8086
 INFLUXDB_DB=cadvisor
 
@@ -18,7 +19,7 @@ if ping -q -c 1 -W 10 -q -- "$INFLUXDB_HOST" >/dev/null; then
 		--volume=/sys:/sys:ro \
 		--volume=/var/lib/docker/:/var/lib/docker:ro \
 		--volume=/sys/fs/cgroup:/sys/fs/cgroup:ro \
-		--publish=8080:8080 \
+		--publish=$CADVISOR_WEB_PORT:8080 \
 		--detach=true \
 		--name=cadvisor google/cadvisor:latest \
 			-storage_driver=influxdb \
