@@ -9,6 +9,7 @@ cd /root
 install_runit.sh
 
 export DEBIAN_FRONTEND=noninteractive
+apt-get update
 apt-get install -y --no-install-recommends unzip
 
 # Install consul-template
