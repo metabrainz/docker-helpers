@@ -8,9 +8,7 @@ cd /root
 
 install_runit.sh
 
-export DEBIAN_FRONTEND=noninteractive
-apt-get update
-apt-get install -y --no-install-recommends unzip
+apk add --no-cache --virtual .build-deps curl unzip
 
 # Install consul-template
 CT_VERSION=0.15.0
@@ -34,7 +32,7 @@ ln -s /etc/sv/consul-template /etc/service/
 
 # These are used inside various .service files
 cat <<'EOF' > /etc/consul_template_helpers.sh
-function wait_for_file {
+wait_for_file() {
     while [ ! -f "$1" ]; do
         sleep 1
     done
@@ -42,6 +40,6 @@ function wait_for_file {
 EOF
 
 # Cleanup
-rm -rf \
-    $CT_RELEASE \
-    /var/lib/apt/lists/*
+rm -rf $CT_RELEASE
+
+apk del .build-deps
