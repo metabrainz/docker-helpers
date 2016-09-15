@@ -22,6 +22,10 @@ mkdir -p /etc/sv/consul-template
 cat <<'EOF' > /etc/sv/consul-template/run
 #!/bin/sh
 
+if [ -f '/etc/consul_template_env.sh' ]; then
+    source '/etc/consul_template_env.sh'
+fi
+
 exec consul-template \
     -config /etc/consul-template.conf \
     -consul consul:8500
