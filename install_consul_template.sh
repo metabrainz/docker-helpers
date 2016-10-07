@@ -11,7 +11,7 @@ install_runit.sh
 apk add --no-cache --virtual .build-deps curl unzip
 
 # Install consul-template
-CT_VERSION=0.15.0
+CT_VERSION=0.16.0
 CT_RELEASE="consul-template_${CT_VERSION}_linux_amd64.zip"
 
 curl -O https://releases.hashicorp.com/consul-template/$CT_VERSION/$CT_RELEASE
