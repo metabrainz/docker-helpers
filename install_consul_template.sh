@@ -28,7 +28,7 @@ fi
 
 exec consul-template \
     -config /etc/consul-template.conf \
-    -consul consulagent:8500
+    -consul 127.0.0.1:8500
 EOF
 
 chmod 755 /etc/sv/consul-template/run
