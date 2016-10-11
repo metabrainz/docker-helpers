@@ -23,14 +23,16 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 
 # install docker-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-
+sudo curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose.t && sudo chmod +x /usr/local/bin/docker-compose.t && sudo mv /usr/local/bin/docker-compose.t /usr/local/bin/docker-compose
 
 # install docker completion for bash
 sudo curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 
 # http://www.acervera.com/blog/2016/03/05/ufw_plus_docker
-[ -e /etc/default/ufw ] && sudo sed -i 's/^DEFAULT_FORWARD_POLICY=.*$/DEFAULT_FORWARD_POLICY="ACCEPT"/' /etc/default/ufw
-
-echo "Now exit and relog as $USER"
+if [ -e /etc/default/ufw ]; then
+	sudo sed -i 's/^DEFAULT_FORWARD_POLICY=.*$/DEFAULT_FORWARD_POLICY="ACCEPT"/' /etc/default/ufw
+	sudo ./docker_ufw_rules.sh
+	echo "Please reboot, ufw rules were modified"
+else
+	echo "Now exit and relog as $USER"
+fi
