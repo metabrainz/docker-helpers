@@ -18,6 +18,7 @@ EOF
 sudo cp systemd_docker.conf /etc/systemd/system/docker.service.d/
 
 sudo sed -i 's/^#DOCKER_OPTS=/DOCKER_OPTS=/' /etc/default/docker
+sudo sed -i 's/^DOCKER_OPTS=.*$/DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 --iptables=false"/' /etc/default/docker
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 
@@ -28,5 +29,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # install docker completion for bash
 sudo curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
+
+# http://www.acervera.com/blog/2016/03/05/ufw_plus_docker
+[ -e /etc/default/ufw ] && sudo sed -i 's/^DEFAULT_FORWARD_POLICY=.*$/DEFAULT_FORWARD_POLICY="ACCEPT"/' /etc/default/ufw
 
 echo "Now exit and relog as $USER"
