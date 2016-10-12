@@ -2,5 +2,5 @@
 
 exec consul-template \
     -config /etc/consul-template.conf \
-    -consul 127.0.0.1:8500 \
+    -consul ${CONSUL_HOST:-127.0.0.1}:${CONSUL_PORT:-8500} \
     -kill-signal=SIGTERM
