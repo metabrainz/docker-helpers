@@ -16,4 +16,5 @@ cat /tmp/before.rules > /etc/ufw/before.rules
 rm -f /tmp/before.rules
 diff -u /etc/ufw/before.rules.bak /etc/ufw/before.rules
 fi
-
+ufw allow in on docker0 from 172.17.0.0/16 to any
+ufw allow out on docker0 from any to 172.17.0.0/16
