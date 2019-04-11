@@ -27,7 +27,6 @@ sudo apt-cache madison docker-ce docker-ce-cli
 
 # Create json config for docker:
 
-```bash
 sudo mkdir -p /etc/docker/
 cat <<EOF >daemon.json
 {
@@ -47,10 +46,8 @@ sudo apt-mark hold docker-ce
 # Note 1: mark on hold to prevent auto upgrades
 # Note 2: docker-ce-cli appeared >= 18.09
 
-```bash
 systemctl daemon-reload
 systemctl status docker
-```
 
 # add current user to docker group
 sudo usermod -aG docker $USER
