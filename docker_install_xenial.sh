@@ -41,7 +41,7 @@ sudo mv -f daemon.json /etc/docker/daemon.json
 sudo apt-mark unhold docker-ce
 export DOCKER_VERSION=5:18.09.5~3-0~ubuntu-xenial
 sudo apt-get install docker-ce=$DOCKER_VERSION docker-ce-cli=$DOCKER_VERSION containerd.io
-sudo apt-mark hold docker-ce
+sudo apt-mark hold containerd.io docker-ce docker-ce-cli
 
 # Note 1: mark on hold to prevent auto upgrades
 # Note 2: docker-ce-cli appeared >= 18.09
