@@ -28,18 +28,18 @@ sudo apt-cache madison docker-ce docker-ce-cli
 # Create json config for docker:
 
 sudo mkdir -p /etc/docker/
-cat <<EOF >daemon.json
-{
-    "dns": ["8.8.8.8", "8.8.4.4"],
-    "iptables": false,
-    "log-driver": "json-file",
-    "log-opts": {
-      "max-size": "10m",
-      "max-file": "3"
-    }
-}
-EOF
-sudo mv -f daemon.json /etc/docker/daemon.json
+#cat <<EOF >daemon.json
+#{
+#    "dns": ["8.8.8.8", "8.8.4.4"],
+#    "iptables": false,
+#    "log-driver": "json-file",
+#    "log-opts": {
+#      "max-size": "10m",
+#      "max-file": "3"
+#    }
+#}
+#EOF
+sudo cp -f hetzner_docker_daemon.json /etc/docker/daemon.json
 
 # Install docker:
 

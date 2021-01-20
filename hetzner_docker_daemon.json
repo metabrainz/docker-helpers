@@ -1,0 +1,14 @@
+{
+    "dns": [
+        "213.133.98.98",
+        "213.133.99.99",
+        "213.133.100.100"
+    ],
+    "iptables": false,
+    "live-restore": true,
+    "log-driver": "json-file",
+    "log-opts": {
+        "max-file": "4",
+        "max-size": "250m"
+    }
+}
