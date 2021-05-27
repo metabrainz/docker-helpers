@@ -4,7 +4,6 @@
         "213.133.99.99",
         "213.133.100.100"
     ],
-    "iptables": false,
     "live-restore": true,
     "log-driver": "json-file",
     "log-opts": {
